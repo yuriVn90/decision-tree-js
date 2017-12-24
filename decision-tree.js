@@ -23,23 +23,6 @@ var dt = (function () {
     }
 
     /**
-     * Creates an instance of RandomForest
-     * with specific number of trees
-     *
-     * @constructor
-     * @param builder - contains training set and some
-     *                  configuration parameters for
-     *                  building decision trees
-     */
-    function RandomForest(builder, treesNumber) {
-        this.trees = buildRandomForest(builder, treesNumber);
-    }
-          
-    RandomForest.prototype.predict = function (item) {
-        return predictRandomForest(this.trees, item);
-    }
-    
-    /**
      * Transforming array to object with such attributes 
      * as elements of array (afterwards it can be used as HashSet)
      */
@@ -340,55 +323,8 @@ var dt = (function () {
         }
     }
 
-    /**
-     * Building array of decision trees
-     */
-    function buildRandomForest(builder, treesNumber) {
-        var items = builder.trainingSet;
-          
-        // creating training sets for each tree
-        var trainingSets = [];
-        for (var t = 0; t < treesNumber; t++) {
-            trainingSets[t] = [];
-        }
-        for (var i = items.length - 1; i >= 0 ; i--) {
-          // assigning items to training sets of each tree
-          // using 'round-robin' strategy
-          var correspondingTree = i % treesNumber;
-          trainingSets[correspondingTree].push(items[i]);
-        }
-
-        // building decision trees
-        var forest = [];
-        for (var t = 0; t < treesNumber; t++) {
-            builder.trainingSet = trainingSets[t];
-
-            var tree = new DecisionTree(builder);
-            forest.push(tree);
-        }
-        return forest;
-    }
-
-    /**
-     * Each of decision tree classifying item
-     * ('voting' that item corresponds to some class).
-     *
-     * This function returns hash, which contains 
-     * all classifying results, and number of votes 
-     * which were given for each of classifying results
-     */
-    function predictRandomForest(forest, item) {
-        var result = {};
-        for (var i in forest) {
-            var tree = forest[i];
-            var prediction = tree.predict(item);
-            result[prediction] = result[prediction] ? result[prediction] + 1 : 1;
-        }
-        return result;
-    }
-
     var exports = {};
     exports.DecisionTree = DecisionTree;
-    exports.RandomForest = RandomForest;
+
     return exports;
 })();
