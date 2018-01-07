@@ -1,4 +1,4 @@
-var dt = (function () {
+var decisionTreeClass = (function () {
           
     /**
      * Creates an instance of DecisionTree

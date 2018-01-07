@@ -2,25 +2,25 @@ function init() {
 
     // Training set
     var data =
-        [{person: 'Homer', hairLength: 0, weight: 113, age: 36, sex: 'male'},
-            {person: 'Marge', hairLength: 18, weight: 68, age: 34, sex: 'female'},
-            {person: 'Bart', hairLength: 4, weight: 40, age: 10, sex: 'male'},
-            {person: 'Lisa', hairLength: 10, weight: 35, age: 8, sex: 'female'},
-            {person: 'Maggie', hairLength: 7, weight: 38, age: 1, sex: 'female'},
-            {person: 'Abe', hairLength: 2, weight: 77, age: 70, sex: 'male'},
-            {person: 'Selma', hairLength: 14, weight: 72, age: 41, sex: 'female'},
-            {person: 'Otto', hairLength: 18, weight: 81, age: 38, sex: 'male'},
-            {person: 'Krusty', hairLength: 10, weight: 90, age: 45, sex: 'male'}];
+        [{person: 'Homer', hairLength: 0, weight: 113, age: 36, gender: 'male'},
+            {person: 'Marge', hairLength: 18, weight: 68, age: 34, gender: 'female'},
+            {person: 'Bart', hairLength: 4, weight: 40, age: 10, gender: 'male'},
+            {person: 'Lisa', hairLength: 10, weight: 35, age: 8, gender: 'female'},
+            {person: 'Maggie', hairLength: 7, weight: 38, age: 1, gender: 'female'},
+            {person: 'Abe', hairLength: 2, weight: 77, age: 70, gender: 'male'},
+            {person: 'Selma', hairLength: 14, weight: 72, age: 41, gender: 'female'},
+            {person: 'Otto', hairLength: 18, weight: 81, age: 38, gender: 'male'},
+            {person: 'Krusty', hairLength: 10, weight: 90, age: 45, gender: 'male'}];
 
     // Configuration
     var config = {
         trainingSet: data,
-        categoryAttr: 'sex',
+        categoryAttr: 'gender',
         ignoredAttributes: ['person']
     };
 
     // Building Decision Tree
-    var decisionTree = new dt.DecisionTree(config);
+    var decisionTree = new decisionTreeClass.DecisionTree(config);
 
     // Testing Decision Tree
     var comic = {person: 'Comic guy', hairLength: 14, weight: 131, age: 38};
